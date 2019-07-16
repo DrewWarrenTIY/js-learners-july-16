@@ -56,5 +56,42 @@ function allTheGreetings() {
   });
 }
 
+// Create and add a nav bar
+function buildHeader() {
+  const app = document.getElementById("app");
+  const pageOneButton = document.createElement("button");
+  app.appendChild(pageOneButton);
+  pageOneButton.outerHTML =
+    '<button onclick="showPageOne();">Page One</button>';
+  const pageTwoButton = document.createElement("button");
+  app.appendChild(pageTwoButton);
+  pageTwoButton.outerHTML =
+    '<button onclick="showPageTwo();">Page Two</button>';
+}
+
+// Clear the app, create and add first page
+function showPageOne() {
+  const app = document.getElementById("app");
+  while (app.firstChild) {
+    app.removeChild(app.firstChild);
+  }
+  buildHeader();
+  firstBuild();
+}
+
+// Clear the app, create and add second page
+function showPageTwo() {
+  const app = document.getElementById("app");
+  while (app.firstChild) {
+    app.removeChild(app.firstChild);
+  }
+  buildHeader();
+
+  const rememberHeader = document.createElement("h1");
+  app.appendChild(rememberHeader);
+  rememberHeader.innerHTML = "I don't remember you";
+}
+
+buildHeader();
 firstBuild();
 allTheGreetings();
