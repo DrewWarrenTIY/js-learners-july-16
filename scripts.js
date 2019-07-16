@@ -41,4 +41,20 @@ function goodbye() {
   }
 }
 
+// Create elements from an array
+
+const listOfGreetings = ["Bonjour", "Hola", "Howdy", "Konnichi wa"];
+
+// Create and add each greeting
+
+function allTheGreetings() {
+  const container = document.querySelector(".js-hello-container");
+  listOfGreetings.map(greeting => {
+    const greetingToAdd = document.createElement("p");
+    container.appendChild(greetingToAdd);
+    greetingToAdd.innerHTML = greeting;
+  });
+}
+
 firstBuild();
+allTheGreetings();
