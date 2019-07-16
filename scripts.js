@@ -82,6 +82,9 @@ function showPageOne() {
 // Clear the app, create and add second page
 function showPageTwo() {
   const app = document.getElementById("app");
+  // Fetch name from state in localStorage
+  const name = localStorage.getItem("userName");
+
   while (app.firstChild) {
     app.removeChild(app.firstChild);
   }
@@ -89,7 +92,34 @@ function showPageTwo() {
 
   const rememberHeader = document.createElement("h1");
   app.appendChild(rememberHeader);
-  rememberHeader.innerHTML = "I don't remember you";
+
+  // Change message if name exists
+
+  let message = "I don't remember you!";
+  if (name) {
+    message = "Hello again, " + name;
+  }
+
+  rememberHeader.innerHTML = message;
+
+  // Create and add a prompt, input and button for user to enter their name
+
+  const namePrompt = document.createElement("p");
+  app.appendChild(namePrompt);
+  namePrompt.innerHTML = "My name is: ";
+  const userNameInput = document.createElement("input");
+  app.appendChild(userNameInput);
+  userNameInput.outerHTML = `<input class="js-remember-me" type="text" />`;
+  const rememberer = document.createElement("button");
+  app.appendChild(rememberer);
+  rememberer.outerHTML = '<button onclick="remember();">Remember Me!</button>';
+}
+
+// Set the input value to state in localStorage and reload the page
+function remember() {
+  const name = document.querySelector(".js-remember-me").value;
+  localStorage.setItem("userName", name);
+  showPageTwo();
 }
 
 buildHeader();
